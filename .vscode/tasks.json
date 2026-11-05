@@ -1,0 +1,8 @@
+{
+  "version": "2.0.0",
+  "tasks": [{
+    "label": "Build and test Dice3D Edu", "type": "shell",
+    "command": "powershell", "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build.ps1", "-Test"],
+    "group": {"kind": "build", "isDefault": true}, "problemMatcher": ["$gcc"]
+  }]
+}

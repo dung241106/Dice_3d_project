@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Mô phỏng Xúc xắc 3D",
+    "notes": "Giới thiệu đề tài.",
+    "source": "Ứng dụng C++/OpenGL của đồ án"
+  },
+  {
+    "title": "Nội dung đồ án và bài giảng",
+    "notes": "Nêu bốn nhóm nội dung trong tài liệu. Năm trang chức năng phân tách phần thao tác và phần quan sát. Chỉ cần demo một ví dụ đại diện cho mỗi nhóm.",
+    "source": "Bài giảng 3D Graphics, tr. 2, 5–16, 19–26, 28–49"
+  },
+  {
+    "title": "Các đối tượng và dữ liệu",
+    "notes": "Giải thích một Mesh được dùng lại cho nhiều Die. Mỗi viên chỉ có vị trí/hướng riêng. Lab và trò chơi giữ trạng thái độc lập, mã dựng hình đọc các trạng thái này. Tránh nói mỗi viên tạo lại toàn bộ đỉnh trong từng khung.",
+    "source": "Mã nguồn và báo cáo của đồ án"
+  },
+  {
+    "title": "Thân xúc xắc từ lưới tam giác",
+    "notes": "Khối cơ bản có 8 vị trí góc, nhưng 24 bản ghi để pháp tuyến từng mặt độc lập. Khối bo chia mỗi mặt n=20. Điểm c là điểm p đã chặn vào hộp bên trong. Vertex=c+r normalize(p-c). Có 2646 đỉnh và 4800 tam giác. Demo F3 khung dây và khối bo.",
+    "source": "Bài giảng tr. 19–26; src/dice.cpp / roundedCube, basicCube"
+  },
+  {
+    "title": "Mặt và chấm trong hệ cơ sở u, v, n",
+    "notes": "Chỉ mặt đang chọn và ba vector. Các mẫu chấm 2D được đưa ra 3D bằng n(h+epsilon)+u*a+v*b. Mỗi chấm dùng quạt 32 tam giác. Các mặt đối tổng 7. Chấm là đĩa hình học bề mặt, chưa phải lỗ lõm. Demo tách mặt.",
+    "source": "src/dice.cpp / faces, pipCenters; src/main.cpp / pips"
+  },
+  {
+    "title": "Thứ tự biến đổi",
+    "notes": "T rồi R dùng R*T theo vector cột. Tâm đến (0,2,0). R rồi T dùng T*R, tâm đến (2,0,0). Tài liệu dùng vector hàng, cần chuyển vị ma trận và đảo thứ tự viết tích. Demo F4 mục Tổ hợp, chọn ví dụ rồi Chạy. Các phép đơn chọn riêng trước khi chạy.",
+    "source": "Bài giảng tr. 5–16; src/lab.cpp / Lab::at"
+  },
+  {
+    "title": "Quay quanh trục qua P",
+    "notes": "Ảnh mẫu dùng P=(1,0,0), k=(1,1,0), 60 độ. Trên giao diện chọn Quay, Trục k, Tâm P rồi Chạy. Thứ tự tác động là T(-P), quay, T(P). Điểm trên trục không đổi. Với shear hoặc scale không đều, normal cần A^-T.",
+    "source": "Bài giảng tr. 10, 13–16; src/lab.cpp / TransformStep::matrix"
+  },
+  {
+    "title": "Phối cảnh và trực giao",
+    "notes": "Giữ các điều kiện camera, đối chiếu kích thước vật xa/gần. Trực giao giữ kích thước ảnh theo độ sâu khi không đổi hộp nhìn. Cabinet là shear trong eye space rồi ortho, hệ số 1/2. Demo F5 đổi ba chế độ.",
+    "source": "Bài giảng tr. 28–36; src/view.cpp"
+  },
+  {
+    "title": "Một đỉnh qua pipeline",
+    "notes": "Các tọa độ minh họa lấy từ capture 13_perspective, đỉnh V6. Model=(.62,.62,.62). Ma trận của inspector và ma trận nạp OpenGL giống nhau. Pixel là hệ tọa độ trong viewport, gốc góc trên trái. Clip chia w cho ra NDC, rồi viewport. Nói rõ camera OpenGL nhìn -Z.",
+    "source": "Bài giảng tr. 38–49; capture 13_perspective; src/view.cpp / project"
+  },
+  {
+    "title": "Chuyển động và va chạm",
+    "notes": "Giữ Space lấy lực. Euler bán ẩn cập nhật vận tốc trước vị trí. Quaternion cập nhật theo omega. Bàn/thành dùng support khối bo. Va giữa viên dùng cầu đại diện bán kính .78. Khi gần dừng, nội suy .4 giây để ổn định. Đây là giới hạn được công bố, chưa là bộ giải vật rắn đầy đủ.",
+    "source": "src/throw_sim.cpp / integrate, contact, constrain, settle"
+  },
+  {
+    "title": "Kết quả từ mặt hướng lên",
+    "notes": "Không sinh một số độc lập để in lên giao diện của trang mô phỏng. Đọc sáu pháp tuyến đã quay, mặt nào có dot với +Y lớn nhất là kết quả. Khi dừng, CSV lấy chính giá trị này. Chưa có kiểm định phân phối công bằng do va chạm xấp xỉ và ổn định.",
+    "source": "src/dice.cpp / topFace; src/throw_sim.cpp / step"
+  },
+  {
+    "title": "Trò ghép hướng và BFS",
+    "notes": "6 lựa chọn mặt trên, 4 mặt trước kề nhau tạo 24 trạng thái. Mỗi cạnh quay ±90 độ quanh X/Y/Z, cùng chi phí. BFS cho đường ngắn nhất, gợi ý hiển thị bước đầu. Tổng ba khoảng cách là tối ưu toàn bài vì các viên độc lập. Demo chọn viên và H.",
+    "source": "src/puzzle.cpp / shortestTurns, FacePuzzle"
+  },
+  {
+    "title": "Lưu dữ liệu và kiểm tra",
+    "notes": "RAM dùng chung một Mesh. throws.csv lưu kết quả, không lưu quỹ đạo. OBJ xuất thân lưới chưa có chấm, transforms.csv xuất chuỗi Lab và chưa nhập lại. Bộ kiểm tra xác nhận công thức, mô phỏng, BFS và OpenGL. Không tuyên bố đã đo FPS hoặc kiểm định thống kê.",
+    "source": "src/storage.cpp, src/tests.cpp, src/throw_tests.cpp; docs/KIEM_THU.md"
+  },
+  {
+    "title": "Demo và hướng phát triển",
+    "notes": "Kết thúc bằng các phần chứng minh được trực tiếp. Nếu còn thời gian mời thầy chọn thứ tự biến đổi hoặc phép chiếu. Hướng phát triển SAT/GJK, nhiều tiếp xúc và shader là tương lai, chưa có trong phiên bản này.",
+    "source": "Mã nguồn và báo cáo của đồ án"
+  }
+]

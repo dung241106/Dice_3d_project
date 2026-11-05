@@ -1,0 +1,11 @@
+/build/*
+!/build/Dice3D_Edu.exe
+!/build/libfreeglut.dll
+!/build/libwinpthread-1.dll
+/captures/
+/tmp/
+/docs/slide_previews/
+__pycache__/
+*.pyc
+*.tmp
+*.bak
