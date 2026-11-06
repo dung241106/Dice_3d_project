@@ -81,6 +81,10 @@ pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-freeglut
 
 Trong VS Code, mở đúng folder `project_3d_version2`, nhấn Ctrl+Shift+B. Có cấu hình CMake cho môi trường có OpenGL/GLUT. Phần hiển thị tiếng Việt dùng font Windows qua WGL. Môi trường ngoài Windows có nhánh font GLUT dự phòng với khả năng Unicode hạn chế.
 
+Code C++ có cấu hình `.clang-format`: thụt lề 4 dấu cách, dấu ngoặc khối xuống dòng và tách các câu lệnh. VS Code tự định dạng khi lưu file C++; nhấn Alt+Shift+F để định dạng thủ công.
+
+Phân công thuyết trình cho ba thành viên ở [docs/PHAN_CONG_3_NGUOI.md](docs/PHAN_CONG_3_NGUOI.md).
+
 ## Cấu trúc mã nguồn
 
 | Tệp | Vai trò |
